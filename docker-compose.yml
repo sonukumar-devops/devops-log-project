@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  generator:
+    build: .
+    command: ["python", "-u", "generator.py"]
+    volumes:
+      - shared-logs:/logs
+
+
+  analyzer:
+    build: .
+    command: ["python", "-u", "analyzer.py"]
+    depends_on:
+      - generator
+    volumes:
+      - shared-logs:/logs
+
+volumes:
+  shared-logs:
