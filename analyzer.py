@@ -1,7 +1,7 @@
 import time
 import os
 
-log_file = "/logs/app.log"
+log_file = "app.log"
 
 print("Analyzer started...", flush=True)
 

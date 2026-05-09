@@ -12,7 +12,7 @@ logs = ["ERROR: File /tmp/xyx.txt not Found",
 
 try:
     while True:
-        with open("/logs/app.log", "a") as f:
+        with open("app.log", "a") as f:
             for log in logs:
                 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 f.write(f"{now} {log}\n")
