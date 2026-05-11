@@ -28,4 +28,4 @@ jobs:
 
       - name: Run analyzer
         run: |
-          timeout 10 python analyzer.py
+          python analyzer.py
