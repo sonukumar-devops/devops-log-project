@@ -6,12 +6,13 @@ log_file = "/logs/app.log"
 
 print("Analyzer started...", flush=True)
 
-try:
-    timeout = 10   # seconds
-    start_time = time.time()
+timeout = 15
+start_time = time.time()
 
+try:
     while True:
-        # ⏱️ Stop after timeout
+
+        # ⏱ Stop after timeout
         if time.time() - start_time > timeout:
             print("No ERROR found. Exiting cleanly.", flush=True)
             sys.exit(0)
@@ -23,21 +24,16 @@ try:
 
         with open(log_file, "r") as f:
             print("Reading logs...", flush=True)
-            #f.seek(0, os.SEEK_END)
 
-            while True:
-                if time.time() - start_time > timeout:
-                    print("No ERROR found. Exiting cleanly.", flush=True)
-                    sys.exit(0)
+            # ✅ READ FULL FILE (NO SEEK)
+            lines = f.readlines()
 
-                line = f.readline()
+            for line in lines:
+                if "ERROR" in line:
+                    print(f"ALERT: {line.strip()}", flush=True)
+                    sys.exit(1)
 
-                if line:
-                    if "ERROR" in line:
-                        print(f"ALERT: {line.strip()}", flush=True)
-                        sys.exit(1)   # ❌ FAIL
-                else:
-                    time.sleep(1)
+        time.sleep(1)
 
 except Exception as e:
     print(f"Some error occurred: {e}", flush=True)

@@ -20,5 +20,6 @@ jobs:
       - name: Run Containers
         run: |
           docker compose up
-          --abort-on-container-exit    
+          --abort-on-container-exit
+          --exit-code-from analyzer    
 
