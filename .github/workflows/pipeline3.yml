@@ -13,13 +13,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      # 🐳 Build images
       - name: Build Docker Images
-        run: | 
+        run: |
           docker compose build
 
+      # 🚀 Run containers + handle exit properly
       - name: Run Containers
         run: |
-          docker compose up
-          --abort-on-container-exit
-          --exit-code-from analyzer    
-
+          docker compose up --abort-on-container-exit --exit-code-from analyzer || EXIT_CODE=$?
+          docker compose down
+          exit ${EXIT_CODE:-0}
