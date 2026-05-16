@@ -1,6 +1,8 @@
 import time
 from datetime import datetime
 
+log_file = "/logs/app.log"
+
 logs = ["ERROR: File /tmp/xyx.txt not Found",
  "WARNING: Failed Login attempt for user root",
  "MESSAGE: deprecated value in sshd_config",
@@ -10,9 +12,11 @@ logs = ["ERROR: File /tmp/xyx.txt not Found",
  "ERROR: Password expired for user sonu"
  ]
 
+os.makedirs("/logs", exist_ok=True)
+
 try:
     while True:
-        with open("app.log", "a") as f:
+        with open("/logs/app.log", "a") as f:
             for log in logs:
                 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 f.write(f"{now} {log}\n")

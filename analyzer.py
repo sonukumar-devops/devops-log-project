@@ -2,7 +2,7 @@ import time
 import os
 import sys
 
-log_file = "app.log"
+log_file = "/logs/app.log"
 
 print("Analyzer started...", flush=True)
 
@@ -23,7 +23,7 @@ try:
 
         with open(log_file, "r") as f:
             print("Reading logs...", flush=True)
-            f.seek(0, os.SEEK_END)
+            #f.seek(0, os.SEEK_END)
 
             while True:
                 if time.time() - start_time > timeout:
