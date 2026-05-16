@@ -1,4 +1,5 @@
 import time
+import os
 from datetime import datetime
 
 log_file = "/logs/app.log"
