@@ -17,7 +17,7 @@ jobs:
         run: | 
           docker-compose build
 
-        -name: Run Containers
+      - name: Run Containers
         run: |
           docker compose up
           --abort-on-container-exit    
