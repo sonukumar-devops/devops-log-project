@@ -3,7 +3,7 @@ version: "3"
 services:
   generator:
     build: .
-    command: ["python", "-u", "generator.py"]
+    command: ["python", "-u", "generator.py"]  # "-u" runs python in unbuffered mode means logs appears instantlt without delay
     volumes:
       - shared-logs:/logs
 
